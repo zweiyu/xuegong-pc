@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+  	<Top/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
@@ -12,6 +14,5 @@ export default {
 
 <style>
 #app {
-
 }
 </style>
