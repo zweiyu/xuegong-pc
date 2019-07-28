@@ -2,7 +2,7 @@
   <div>
   	<div class="login-top">
   	  <img src="@/assets/img/logo.png" alt="" class="login-top-pic1">
-  	  <img src="@/assets/img/高校学生综合服务平台1.png" alt="" class="login-top-pic2">
+  	  <img @click="back()" src="@/assets/img/高校学生综合服务平台1.png" alt="" class="login-top-pic2">
   	</div>
   	<div class="head">
       <div class="head-con">
@@ -44,7 +44,9 @@ export default {
   	Bus.$emit('cancelTop')
   },
   methods: {
-
+    back () {
+      this.$router.push('/')
+    }
   },
 }
 </script>
@@ -64,8 +66,9 @@ export default {
   &-pic2 {
   	width: 258px;
   	height: 25px;
-	margin-top: 29px;
-	margin-left :21px;
+	  margin-top: 29px;
+	  margin-left :21px;
+    cursor: pointer;
   }
 }
 .head {
