@@ -1,9 +1,9 @@
 <template>
   <div class="body">
-  	<div class="content">
-  	  <List/>
-      <router-view/>	
-  	</div>
+    <div class="content">
+      <List/>
+      <router-view/>  
+    </div>
   </div>
 </template>
 
@@ -15,9 +15,10 @@ export default {
   name: 'index',
   components: {List},
   mounted() {
-  	this.$router.push('/HelpGuide')
+    this.$router.push('/CollectInfo')
   },
   created () {
+    
   },
 }
 </script>

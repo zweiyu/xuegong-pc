@@ -1,7 +1,9 @@
 import MessageBox from './message-box'
+import Toast from './toast'
 
 const plugins = {
-  MessageBox
+  MessageBox,
+  Toast,
 }
 
 export default function installAllPlugins (instance) {

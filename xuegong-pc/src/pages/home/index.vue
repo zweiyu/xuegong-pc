@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import Bus from '@/assets/js/bus'
+
 export default {
   name: 'Home',
   data () {
@@ -99,6 +101,9 @@ export default {
       ],
       process1: ['1.学生在线申请[困难认定],提交材料','2.院系、学生处审核认定困难等级','3.学生处设定奖助项目及期限'],
     }
+  },
+  created () {
+    Bus.$emit('showTop')
   },
   methods: {
     },

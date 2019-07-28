@@ -3,28 +3,24 @@
     <div class="top">
       <div class="top-con">
         <img src="@/assets/img/logo.png" alt="" class="top-logo">
-        <div class="top-item-home-wrap">
-          <div class="top-item-home" @click="home()">首页</div>
-          <ul class="top-down" >
-            <li 
-              class="top-down-item" 
-              @click="changeTab2(index2)" 
-              v-for="(item,index2) in dropdown" 
-              :key="index2"
-            >
-              {{item}}
-            </li>
-          </ul>
-        </div>
         <div 
           v-for="(item,index) in topData"
           :key="index" 
           :style="{'border-right': index!==8 ? '1px solid #DFDFDF' : ''}"
           @click="changeTab(index)"
-          @click.stop
           :class="index===currentTab ? 'top-item-change' : 'top-item'"
         >
-          {{item}}
+          {{item.title}}
+          <ul class="top-down" >
+            <li 
+              class="top-down-item"  
+              v-for="(items,indexs) in item.child" 
+              :key="indexs"
+              @click="changeTab2(indexs)"
+            >
+              {{items}}
+            </li>
+          </ul>
         </div>
         <div class="top-user">
           <img src="@/assets/img/icon_user.png" alt="" class="user-img">
@@ -50,10 +46,37 @@ export default {
   data () {
     return {
       showTop: true,
-      topData: ['个人信息','奖学助学','医保服务','就业服务','智慧团建','日常管理','查询统计','更多服务'],
-      currentTab: '',
-      dropdown: ['系统公告','帮助指南','联系方式','系统简介','数据统计'],
-      showdown: false,
+      topData: [
+        {
+          title: '首页',
+          child: ['系统公告','帮助指南','联系方式','系统简介','数据统计'],
+        },
+        {
+          title: '个人信息'
+        },
+        {
+          title: '奖学助学'
+        },
+        {
+          title: '医保服务'
+        },
+        {
+          title: '就业服务'
+        },
+        {
+          title: '智慧团建'
+        },
+        {
+          title: '日常管理'
+        },
+        {
+          title: '查询统计'
+        },
+        {
+          title: '更多服务'
+        },
+      ],
+      currentTab: 0,
     }
   },
   created () {
@@ -67,46 +90,25 @@ export default {
   methods: {
     changeTab(index) {
       if (index === 0) {
-        this.showdown = !this.showdown
         this.currentTab = index
+        this.$router.push('/')
       } else if (index === 1) {
-        this.$router.push('')
         this.currentTab = index
-      } else if (index === 2) {
-        this.$router.push('')
-        this.currentTab = index
-      } else if (index === 3) {
-        this.$router.push('')
-        this.currentTab = index
-      } else if (index === 4) {
-        this.$router.push('')
-        this.currentTab = index
-      } else if (index === 5) {
-        this.$router.push('')
-        this.currentTab = index
-      } else if (index === 6) {
-        this.$router.push('')
-        this.currentTab = index
-      } else if (index === 7) {
-        this.$router.push('')
-        this.currentTab = index
-      } else if (index === 8) {
-        this.$router.push('')
-        this.currentTab = index
-      }
+        this.$router.push('/CollectInfo')
+      } 
       else {
         this.$_toast.show('该功能暂未开放')
       }
     },
-    changeTab2(index) {
-      if(index === 0) {
-        this.$router.push('')
-      } else if(index === 1) {
-        this.$router.push('/HelpGuide')
-      } else if(index === 2) {
-        this.$router.push('/Contact')
-      } else if(index === 3) {
-        this.$router.push('/Introduction')
+    changeTab2(indexs) {
+      if(indexs === 0) {
+        this.$_toast.show('该功能暂未开放')
+      } else if(indexs === 1) {
+        this.$router.replace('/HelpGuide')
+      } else if(indexs === 2) {
+        this.$router.replace('')
+      } else if(indexs === 3) {
+        this.$router.replace('')
       }
       else {
         this.$_toast.show('该功能暂未开放')
@@ -114,9 +116,6 @@ export default {
     },
     exit () {
       this.$router.push('/login')
-    },
-    home () {
-      this.$router.push('/')
     },
   }
 }
@@ -148,22 +147,31 @@ export default {
   font-size: 17px;
   color: #565656;
   cursor: pointer;
+  position: relative;
 }
 .top-item:hover {
   background: #EFF5F6;
   height: 83px;
   line-height: 84px;
 }
+.top-item:hover ul{
+  display: block;
+}
 .top-item-change:hover {
   background: #EFF5F6;
   height: 83px;
   line-height: 84px;
+}
+.top-item-change:hover ul{
+  display: block;
 }
 .top-item-change {
   width: 118px;
   text-align: center;
   font-size: 17px;
   color: #26988F;
+  position: relative;
+  cursor: pointer;
 }
 .top-user {
   display: flex;
@@ -214,8 +222,8 @@ export default {
 .top-down {
   width: 107px;
   position: absolute;
-  top: 60px;
-  left: 60px;
+  top: 83px;
+  left: 6px;
   display: none;
 }
 .top-down-item {
@@ -231,23 +239,5 @@ export default {
 .top-down-item:hover {
   color: #26988F;
   background: #EFF5F6;
-}
-.top-item-home {
-  color: #565656;
-  font-size: 17px;
-  width: 83px;
-  height: 37px;
-  border-right: 1px solid #DFDFDF;
-  text-align: center;
-  line-height: 37px;
-  cursor: pointer;
-}
-.top-item-home:hover {
-  background: #EFF5F6;
-  height: 83px;
-  line-height: 82px;
-}
-.top-item-home-wrap:hover ul{
-  display: block;
 }
 </style>

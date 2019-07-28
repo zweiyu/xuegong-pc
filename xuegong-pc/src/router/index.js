@@ -6,8 +6,6 @@ Vue.use(Router)
 // 动态import，实现路由懒加载
 //首页
 const Home = () => import('@/pages/home/index')
-//测试页面
-const Axios = () => import('@/pages/axios')
 //登录页
 const Login = () => import('@/pages/login/index')
 //首页的其他页面
@@ -15,6 +13,12 @@ const HomeOtherIndex = () => import('@/pages/home-other/index')
 const HelpGuide = () => import('@/pages/home-other/children/help-guide')
 const Contact = () => import('@/pages/home-other/children/contact')
 const Introduction = () => import('@/pages/home-other/children/introduction')
+//个人信息
+const Information = () => import('@/pages/information/index')
+const CollectInfo = () => import('@/pages/information/children/collect-info')
+const BasicInfo = () => import('@/pages/information/children/basic-info')
+const FamilyInfo = () => import('@/pages/information/children/family-info')
+const Journal = () => import('@/pages/information/children/journal')
 
 // 全局路由导航
 const beforeEach = ((to, from, next) => {
@@ -40,12 +44,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
-    },
-    //测试页面
-    {
-      path: '/axios',
-      name: 'Axios',
-      component: Axios
     },
     //登录页
     {
@@ -76,5 +74,33 @@ export default new Router({
         },
       ]
     },
+    //个人信息
+    {
+      path: '/Information',
+      name: 'Information',
+      component: Information,
+      children: [
+        {
+          path: '/CollectInfo',
+          name: 'CollectInfo',
+          component: CollectInfo
+        },
+        {
+          path: '/BasicInfo',
+          name: 'BasicInfo',
+          component: BasicInfo
+        },
+        {
+          path: '/FamilyInfo',
+          name: 'FamilyInfo',
+          component: FamilyInfo
+        },
+        {
+          path: '/Journal',
+          name: 'Journal',
+          component: Journal
+        },
+      ]
+    }
   ]
 })
