@@ -17,28 +17,25 @@ export default {
   name: 'list',
   data () {
   	return {
-  	  list: ['系统公告','帮助指南','联系方式','系统简介','数据统计'],
-  	  currentIndex: 1,
+  	  list: ['信息汇总','基本信息','家庭信息','我的日志'],
+  	  currentIndex: 0,
   	}
   },
   methods: {
     change(index) {
       if(index === 0) {
-      	this.$_toast.show('该功能暂未开放')
-      	this.$router.push('')
+      	this.currentIndex = index
+      	this.$router.push('/CollectInfo')
       } else if (index === 1) {
       	this.currentIndex = index
-      	this.$router.push('/HelpGuide')
+      	this.$router.push('/BasicInfo')
       } else if (index === 2) {
       	this.currentIndex = index
-      	this.$router.push('/Contact')
+      	this.$router.push('/FamilyInfo')
       } else if (index === 3) {
       	this.currentIndex = index
-      	this.$router.push('/Introduction')
-      } else if (index === 4) {
-      	this.$_toast.show('该功能暂未开放')
-      	this.$router.push('')
-      }
+      	this.$router.push('/Journal')
+      } 
     },
   },
 }
