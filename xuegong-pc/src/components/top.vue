@@ -17,6 +17,7 @@
               v-for="(items,indexs) in item.child" 
               :key="indexs"
               @click="changeTab2(indexs)"
+              @click.stop
             >
               {{items}}
             </li>
@@ -104,11 +105,11 @@ export default {
       if(indexs === 0) {
         this.$_toast.show('该功能暂未开放')
       } else if(indexs === 1) {
-        this.$router.replace('/HelpGuide')
+        this.$router.push('/HelpGuide')
       } else if(indexs === 2) {
-        this.$router.replace('')
+        this.$router.push('/Contact')
       } else if(indexs === 3) {
-        this.$router.replace('')
+        this.$router.push('/Introduction')
       }
       else {
         this.$_toast.show('该功能暂未开放')
